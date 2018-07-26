@@ -15,8 +15,19 @@ namespace BeerTracking_be.Controllers
     [Route("api/breweries")]
     public class BreweryController : BaseController<Brewery>
     {
+        BreweryManager manager;
+
         public BreweryController(BaseManager<Brewery> manager) : base(manager)
         {
+            this.manager = manager as BreweryManager;
+        }
+
+        [Route("api/findByState{state:string}")]
+        public List<Brewery> BreweryControllerLookup(string state)
+        {
+            return manager.GetbyState(state);
         }
     }
-}
+ }
+   
+
