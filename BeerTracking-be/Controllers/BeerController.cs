@@ -12,8 +12,10 @@ namespace BeerTracking_be.Controllers
     [Route("api/Beer")]
     public class BeerController : BaseController<Beer>
     {
+        private readonly BeerManager beerManager;
         public BeerController(BaseManager<Beer> manager) : base(manager)
         {
+            this.beerManager = manager as BeerManager;
         }
 
         [Route("abv/{from:decimal}-{to:decimal}")]
@@ -21,5 +23,13 @@ namespace BeerTracking_be.Controllers
         {
             throw new Exception("foo");
         }
+
+        [Route("api/beer/{name}")]
+        [HttpGet]
+        public Beer FindBeerByName(string name)
+        {
+            return beerManager.FindBeerByName(name);
+        }
+
     }
 }
