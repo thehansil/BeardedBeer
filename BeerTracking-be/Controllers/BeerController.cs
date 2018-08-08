@@ -5,6 +5,7 @@ using BeerTracking_be.Data.Beers;
 using Microsoft.AspNetCore.Mvc;
 using MongoCrud.Data;
 using MongoCrud.Domain.Beers;
+using MongoCrud.Domain.Breweries;
 
 namespace BeerTracking_be.Controllers
 {
@@ -38,5 +39,18 @@ namespace BeerTracking_be.Controllers
             return Ok(beerManager.GetBeersWithTags(tags));
         }
 
+        [HttpGet]
+        [Route("/breweries")]
+        public IActionResult GetAllBeersAtBrewery([FromBody] Brewery brewery)
+        {
+            return Ok(beerManager.GetAllBeersAtBrewery(brewery));
+        }
+
+        [HttpGet]
+        [Route("/{id}")]
+        public IActionResult FindBeerByBrewery([FromRoute] Guid id)
+        {
+            return Ok(beerManager.GetAllBeersByBrewery(id));
+        }
     }
 }
