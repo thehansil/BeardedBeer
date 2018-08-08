@@ -43,10 +43,10 @@ namespace MongoCrud.Data
         {
             collection.InsertOne(entity);
         }
-        public List<TEntityType> ListAll()
+
+        public List<TEntityType> GetAll()
         {
             return collection.Find(a => true).ToList();
-
         }
     }
 }
