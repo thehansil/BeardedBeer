@@ -31,5 +31,12 @@ namespace BeerTracking_be.Controllers
             return beerManager.FindBeerByName(name);
         }
 
+        [HttpGet]
+        [Route("/tags")]
+        public IActionResult GetBeersContainingTag([FromBody] IEnumerable<string> tags)
+        {
+            return Ok(beerManager.GetBeersWithTags(tags));
+        }
+
     }
 }
