@@ -18,7 +18,7 @@ namespace BeerTracking_be.Application
 
         public List<Brewery> GetbyState(string state)
         {
-            List<Brewery> allBreweries = repo.ListAll();
+            List<Brewery> allBreweries = repo.GetAll();
             return allBreweries.Where(a => a.Locations.Any(b => b.State == state)).ToList();
         }
     }
