@@ -20,5 +20,10 @@ namespace BeerTracking_be.Application
         {
            return beerRepo.GetAll().Where(a => a.Name == name).FirstOrDefault();
         }
+
+        public List<Beer> GetBeersWithTags(IEnumerable<string> tags)
+        {
+            return beerRepo.GetAll().Where(w => w.Tags.Any(x => tags.Any(y => x == y))).ToList();
+        }
     }
 }
